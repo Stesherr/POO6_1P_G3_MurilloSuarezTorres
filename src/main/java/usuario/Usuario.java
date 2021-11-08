@@ -10,5 +10,11 @@ package usuario;
  * @author Stefano
  */
 public class Usuario {
-    
+    protected int codUsuario;
+    protected String numCedula;
+    protected String nombre;
+    protected String apellido;
+    protected String user;
+    protected String contraseña;
+    protected String celular;
 }
