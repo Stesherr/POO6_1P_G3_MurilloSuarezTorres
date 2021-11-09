@@ -7,8 +7,8 @@ package usuario;
 
 /**
  *
- * @author josem
+ * @author Stefano
  */
-public enum EstadoConductor {
-    DISPONIBLE, OCUPADO
+public enum TipoVehiculo {
+    MOTO, AUTO
 }

@@ -9,6 +9,3 @@ package usuario;
  *
  * @author josem
  */
-public enum Vehiculo {
-    
-}
