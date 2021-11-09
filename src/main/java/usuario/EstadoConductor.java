@@ -7,11 +7,8 @@ package usuario;
 
 /**
  *
- * @author Stefano
+ * @author josem
  */
-public class Conductor {
-    private int numLicencia;
-    private EstadoConductor estado;
-    private Vehiculo vehiculo;
+public enum EstadoConductor {
     
 }
