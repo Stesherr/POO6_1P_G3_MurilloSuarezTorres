@@ -10,5 +10,16 @@ package usuario;
  * @author Stefano
  */
 public class Cliente {
+    private int edad;
+    private int numTarjCredit;
+    
+    public Cliente (Usuario usuario, int edad, int numTarjCredit){
+        super();
+        this.edad = edad;
+        this.numTarjCredit = numTarjCredit;
+    }
+    
+    //solicitar servicio de taxi
+    
     
 }
