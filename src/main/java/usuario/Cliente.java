@@ -20,6 +20,23 @@ public class Cliente {
     }
     
     //solicitar servicio de taxi
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getNumTarjCredit() {
+        return numTarjCredit;
+    }
+
+    public void setNumTarjCredit(int numTarjCredit) {
+        this.numTarjCredit = numTarjCredit;
+    }
+    
     
     
 }
