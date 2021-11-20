@@ -5,14 +5,18 @@
  */
 package actividades;
 
+import java.util.Date;
+import usuario.Conductor;
+
 /**
  *
  * @author josem
  */
-public class Taxi {
+public class Taxi extends Servicio{
     private int numPersonas;
     
-    public void Taxi(Servicio servicio, int numPersonas){
+    public Taxi(int id, Date fecha, Ruta ruta, String hora, Conductor conductor, int numPersonas){
+        super(id,fecha,ruta,hora,conductor);
         this.numPersonas = numPersonas;
     }
     

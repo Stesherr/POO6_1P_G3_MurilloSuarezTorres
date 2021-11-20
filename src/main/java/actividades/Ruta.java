@@ -10,10 +10,10 @@ package actividades;
  * @author josem
  */
 public class Ruta {
-    protected String pllegada;
-    protected String psalida;
+    private String pllegada;
+    private String psalida;
     
-    public void Ruta(String pllegada, String psalida){
+    public Ruta(String pllegada, String psalida){
         this.pllegada = pllegada;
         this.psalida = psalida;
     }

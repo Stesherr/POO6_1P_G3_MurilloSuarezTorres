@@ -5,15 +5,20 @@
  */
 package actividades;
 
+import java.util.Date;
+import usuario.Conductor;
+
 /**
  *
  * @author josem
  */
-public class Encomienda {
+public class Encomienda extends Servicio{
     private TipoEncomienda tipoEncomienda;
     private int numProductos;
     
-    public void Encomienda(Servicio servicio, TipoEncomienda e, int numProductos){
+    public Encomienda(int id, Date fecha, Ruta ruta, String hora, 
+            Conductor conductor, TipoEncomienda e, int numProductos){
+        super(id,fecha,ruta,hora,conductor);
         this.numProductos = numProductos;
         this.tipoEncomienda = e;
     }

@@ -12,14 +12,14 @@ import usuario.TipoVehiculo;
  *
  * @author josem
  */
-public class Servicio {
+public abstract class Servicio {
     protected int id;
     protected Date fecha;
     protected Ruta ruta;
     protected String hora;
     protected Conductor conductor;
     
-    public void Servicio(int id, Date fecha, Ruta ruta, String hora, Conductor conductor){
+    public Servicio(int id, Date fecha, Ruta ruta, String hora, Conductor conductor){
         this.conductor = conductor;
         this.fecha = fecha;
         this.hora = hora;

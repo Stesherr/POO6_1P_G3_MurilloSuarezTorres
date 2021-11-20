@@ -7,17 +7,20 @@ package actividades;
 import comida.Pedido;
 import comida.Plato;
 import java.util.ArrayList;
+import java.util.Date;
+import usuario.Conductor;
 import usuario.TipoVehiculo;
 
 /**
  *
  * @author josem
  */
-public class Delivery {
+public class Delivery extends Servicio{
     private String datos;
     private Pedido pedido;
     
-    public void Delivery(Servicio servicio, String datos, Pedido pedido){
+    public Delivery(int id, Date fecha, Ruta ruta, String hora, Conductor conductor, String datos, Pedido pedido){
+        super(id,fecha,ruta,hora,conductor);
         this.datos = datos;
         this.pedido = pedido;
     }
