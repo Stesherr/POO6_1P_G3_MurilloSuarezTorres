@@ -49,4 +49,9 @@ public class Conductor extends Usuario{
         }
         
     }
+    
+    @Override
+    public String toString(){
+        return this.numCedula + "," + this.numLicencia + "," + this.estado + "," + this.vehiculo.getCodVehiculo();
+    }
 }

@@ -1,6 +1,7 @@
 actividades\Encomienda.class
 actividades\Pago.class
 actividades\Delivery.class
+actividades\Servicio$1.class
 usuario\Conductor.class
 usuario\Cliente.class
 comida\Pedido.class
@@ -11,7 +12,11 @@ actividades\Taxi.class
 comida\Restaurante.class
 actividades\Servicio.class
 usuario\TipoVehiculo.class
+actividades\Delivery$1.class
 actividades\TipoEncomienda.class
+manejoArchivos\manejoArchivos.class
 usuario\Vehiculo.class
+actividades\TipoPago.class
+actividades\TipoServicio.class
 sistema\Sistema.class
 comida\Plato.class

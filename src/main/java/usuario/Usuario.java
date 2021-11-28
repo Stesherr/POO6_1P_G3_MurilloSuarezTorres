@@ -9,7 +9,7 @@ package usuario;
  *
  * @author Stefano
  */
-public class Usuario {
+public abstract class Usuario {
     protected String numCedula;
     protected String nombre;
     protected String apellido;
@@ -73,4 +73,6 @@ public class Usuario {
     public void setCelular(String celular){
         this.celular = celular;
     }
+    
+
 }

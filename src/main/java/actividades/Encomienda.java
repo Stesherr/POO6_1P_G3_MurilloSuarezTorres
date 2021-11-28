@@ -41,11 +41,11 @@ public class Encomienda extends Servicio{
         EstadoConductor estado= EstadoConductor.DISPONIBLE;
         for (int i = 0; i < Sistema.getConductores().size(); i++) {
             
-            if ((Sistema.getConductores().get(i).getEstado()==estado)&&(Sistema.getConductores().get(i).getVehiculo()==vehiculo)){
-                this.conductor = Sistema.getConductores().get(i);
-                Sistema.getConductores().get(i).setEstado(EstadoConductor.OCUPADO);
-                break;
-            }
+//            if ((Sistema.getConductores().get(i).getEstado()==estado)&&(Sistema.getConductores().get(i).getVehiculo()==vehiculo)){
+//                this.conductor = Sistema.getConductores().get(i);
+//                Sistema.getConductores().get(i).setEstado(EstadoConductor.OCUPADO);
+//                break;
+//            }
             
         }
         

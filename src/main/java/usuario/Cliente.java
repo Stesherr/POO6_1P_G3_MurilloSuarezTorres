@@ -11,11 +11,11 @@ package usuario;
  */
 public class Cliente extends Usuario{
     private int edad;
-    private int numTarjCredit;
+    private String numTarjCredit;
     
     
     
-    public Cliente (String numCedula,String nombre,String apellido,String user,String pass,String celular, int edad, int numTarjCredit){
+    public Cliente (String numCedula,String nombre,String apellido,String user,String pass,String celular, int edad, String numTarjCredit){
         super(numCedula, nombre, apellido,user, pass, celular);
         this.edad = edad;
         this.numTarjCredit = numTarjCredit;
@@ -31,14 +31,17 @@ public class Cliente extends Usuario{
         this.edad = edad;
     }
 
-    public int getNumTarjCredit() {
+    public String getNumTarjCredit() {
         return numTarjCredit;
     }
 
-    public void setNumTarjCredit(int numTarjCredit) {
+    public void setNumTarjCredit(String numTarjCredit) {
         this.numTarjCredit = numTarjCredit;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.numCedula + "," + this.edad + "," + this.numTarjCredit;
+    }
     
 }

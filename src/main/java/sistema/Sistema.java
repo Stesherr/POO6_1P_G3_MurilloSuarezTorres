@@ -102,7 +102,7 @@ public class Sistema {
             String tipoUsuario = datosUsuario.get(6);
             if(tipoUsuario.equals("C")){
                 Cliente cliente = new Cliente(datosUsuario.get(0),datosUsuario.get(1),datosUsuario.get(2)
-                        , datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,0);
+                        , datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,null);
                 usuarios.add(cliente);
             }
             else if(tipoUsuario.equals("R")){
@@ -112,14 +112,32 @@ public class Sistema {
             } 
         }
         
-        System.out.println(usuarios);
         
         for(Usuario user:usuarios){
             if(user.getUser().equals(usuario)&&user.getPass().equals(password)){
                 if(user instanceof Cliente){
-                    menuCliente();
+                    Cliente cl = (Cliente)user;
+                    if(cl.getEdad()==0 && cl.getNumTarjCredit() == null){
+                        System.out.println("Ingrese su edad: ");
+                        int edad = sc.nextInt();
+                        sc.nextLine();
+                        cl.setEdad(edad);
+                        System.out.println("Ingrese su numero de tarjeta: ");
+                        String numTarjeta = sc.nextLine();
+                        cl.setNumTarjCredit(numTarjeta);
+                        System.out.println("Se han añadido sus datos correctamente");
+                        manejoArchivos.EscribirArchivo("clientes.txt", cl.toString());
+                        menuCliente();
+                        
+                    }
+                    else{
+                        manejoArchivos.EscribirArchivo("clientes.txt", cl.toString());
+                        menuCliente();
+                    }                    
                 }
                 else if(user instanceof Conductor){
+                    Conductor conduc = (Conductor)user;
+                    
                     menuConductor();
                 }
             }

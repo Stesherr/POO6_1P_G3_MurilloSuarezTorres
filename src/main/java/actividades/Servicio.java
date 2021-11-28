@@ -43,7 +43,7 @@ public abstract class Servicio {
     public double CalcularPago(){
         double resultado = 0.0;
         //calcualr el pago
-        double random= Math.random();
+        double random= Math.random()*50.0+1.0;
         switch(tp){
             case EFECTIVO:
                 resultado = random;

@@ -41,7 +41,7 @@ public class Delivery extends Servicio{
         for (int i = 0; i < lista.size(); i++) {
             resultado = resultado + lista.get(i).getPrecio();
         }
-        double random= Math.random();
+        double random= Math.random()*50.0+1.0;
         switch(tp){
             case EFECTIVO:
                 resultado = random+resultado;
