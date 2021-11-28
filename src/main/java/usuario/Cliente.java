@@ -9,12 +9,14 @@ package usuario;
  *
  * @author Stefano
  */
-public class Cliente {
+public class Cliente extends Usuario{
     private int edad;
     private int numTarjCredit;
     
-    public Cliente (Usuario usuario, int edad, int numTarjCredit){
-        super();
+    
+    
+    public Cliente (String numCedula,String nombre,String user,String contraseña,String celular, int edad, int numTarjCredit){
+        super(numCedula, nombre, user, contraseña, celular);
         this.edad = edad;
         this.numTarjCredit = numTarjCredit;
     }

@@ -8,8 +8,10 @@ import comida.Pedido;
 import comida.Plato;
 import java.util.ArrayList;
 import java.util.Date;
+import sistema.Sistema;
 import usuario.Conductor;
 import usuario.TipoVehiculo;
+import usuario.EstadoConductor;
 
 /**
  *
@@ -19,8 +21,8 @@ public class Delivery extends Servicio{
     private String datos;
     private Pedido pedido;
     
-    public Delivery(int id, Date fecha, Ruta ruta, String hora, Conductor conductor, String datos, Pedido pedido){
-        super(id,fecha,ruta,hora,conductor);
+    public Delivery(int id, Date fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,EstadoConductor ec,TipoServicio ts, Conductor conductor, String datos, Pedido pedido){
+        super(id,fecha,ruta,hora,tp,tv,ec,ts,conductor);
         this.datos = datos;
         this.pedido = pedido;
     }
@@ -29,25 +31,46 @@ public class Delivery extends Servicio{
         
     }
     
-    public double CalculaarPago(Pedido o){
+    public static void generarDelivery(){
+        
+    }
+    
+    public double CalcularPago(Pedido o){
         ArrayList<Plato> lista = o.getEleccion();
         double resultado = 0.0;
         for (int i = 0; i < lista.size(); i++) {
             resultado = resultado + lista.get(i).getPrecio();
         }
+        double random= Math.random();
+        switch(tp){
+            case EFECTIVO:
+                resultado = random+resultado;
+                break;
+            case TARJETA:
+                resultado = random+resultado+((random+resultado)*0.10);
+                break;
+        }
         return resultado;
     }
-    /*
-    public void SepararConductor(String vehiculo){
+    
+    
+    @Override
+    public void SepararConductor(TipoVehiculo opcion){
         
-        if (vehiculo.toLowerCase()=="moto"){
-            super.SepararConductor(vehiculo);
-        }else{
-            System.out.println("Para este servicio solo contamos con conductores de moto");
+        TipoVehiculo vehiculo= TipoVehiculo.MOTO;
+        EstadoConductor estado= EstadoConductor.DISPONIBLE;
+        for (int i = 0; i < Sistema.getConductores().size(); i++) {
+            
+            if ((Sistema.getConductores().get(i).getEstado()==estado)&&(Sistema.getConductores().get(i).getVehiculo()==vehiculo)){
+                this.conductor = Sistema.getConductores().get(i);
+                Sistema.getConductores().get(i).setEstado(EstadoConductor.OCUPADO);
+                break;
+            }
+            
         }
         
     }
-    */
+    
 
     public String getDatos() {
         return datos;

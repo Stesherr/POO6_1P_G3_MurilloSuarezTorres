@@ -7,6 +7,9 @@ package actividades;
 
 import java.util.Date;
 import usuario.Conductor;
+import usuario.TipoVehiculo;
+import usuario.EstadoConductor;
+import sistema.Sistema;
 
 /**
  *
@@ -16,24 +19,37 @@ public class Encomienda extends Servicio{
     private TipoEncomienda tipoEncomienda;
     private int numProductos;
     
-    public Encomienda(int id, Date fecha, Ruta ruta, String hora, 
+    public Encomienda(int id, Date fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,TipoServicio ts, EstadoConductor ec, 
             Conductor conductor, TipoEncomienda e, int numProductos){
-        super(id,fecha,ruta,hora,conductor);
+        super(id,fecha,ruta,hora,tp,tv,ec,ts,conductor);
         this.numProductos = numProductos;
         this.tipoEncomienda = e;
     }
     
-    /*
-    public void SepararConductor(String vehiculo){
+    public double CalcularPago(){
+        return super.CalcularPago();
+    }
+    
+    public void generarEncomienda(){
         
-        if (vehiculo.toLowerCase()=="moto"){
-            super.SepararConductor(vehiculo);
-        }else{
-            System.out.println("Para este servicio solo contamos con conductores de moto");
+    }
+    
+    @Override
+    public void SepararConductor(TipoVehiculo opcion){
+        
+        TipoVehiculo vehiculo= TipoVehiculo.MOTO;
+        EstadoConductor estado= EstadoConductor.DISPONIBLE;
+        for (int i = 0; i < Sistema.getConductores().size(); i++) {
+            
+            if ((Sistema.getConductores().get(i).getEstado()==estado)&&(Sistema.getConductores().get(i).getVehiculo()==vehiculo)){
+                this.conductor = Sistema.getConductores().get(i);
+                Sistema.getConductores().get(i).setEstado(EstadoConductor.OCUPADO);
+                break;
+            }
+            
         }
         
     }
-    */
 
     public TipoEncomienda getTipoEncomienda() {
         return tipoEncomienda;

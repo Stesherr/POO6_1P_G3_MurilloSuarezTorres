@@ -11,13 +11,13 @@ import static usuario.EstadoConductor.OCUPADO;
  *
  * @author Stefano
  */
-public class Conductor {
+public class Conductor extends Usuario{
     private int numLicencia;
     private EstadoConductor estado;
     private TipoVehiculo vehiculo;
     
-    public Conductor(Usuario usuario, int numLicencia, EstadoConductor estado,TipoVehiculo vehiculo){
-        super();
+    public Conductor(String numCedula,String nombre,String user,String contraseña,String celular, int numLicencia, EstadoConductor estado,TipoVehiculo vehiculo){
+        super(numCedula, nombre, user, contraseña, celular);
         this.estado = estado;
         this.numLicencia = numLicencia;
         this.vehiculo = vehiculo;

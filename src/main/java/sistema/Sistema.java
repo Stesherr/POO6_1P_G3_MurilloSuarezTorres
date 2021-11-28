@@ -7,12 +7,16 @@ package sistema;
 import java.util.ArrayList;
 import java.util.Scanner;
 import usuario.Usuario;
+import usuario.Conductor;
+import usuario.Cliente;
 /**
  *
  * @author Stefano
  */
 public class Sistema {
     private static ArrayList<Usuario> usuarios = new ArrayList();
+    private static ArrayList<Conductor> conductores= new ArrayList();
+    private static ArrayList<Cliente> clientes = new ArrayList();
     private static Scanner sc = new Scanner(System.in);
     
     public static void menuCliente(){
@@ -25,8 +29,10 @@ public class Sistema {
         System.out.println("4. Consultar servicio\n");
         System.out.println("Elija una opcion:");
         int opcion = sc.nextInt();
-        sc.nextLine();        
+        sc.nextLine();  
+        Scanner sca = new Scanner(System.in);
         switch(opcion){
+            
             case 1:
                 
                 break;
@@ -47,6 +53,40 @@ public class Sistema {
         
         
     }
+
+    public static ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public static void setUsuarios(ArrayList<Usuario> usuarios) {
+        Sistema.usuarios = usuarios;
+    }
+
+    public static ArrayList<Conductor> getConductores() {
+        return conductores;
+    }
+
+    public static void setConductores(ArrayList<Conductor> conductores) {
+        Sistema.conductores = conductores;
+    }
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(ArrayList<Cliente> clientes) {
+        Sistema.clientes = clientes;
+    }
+
+    public static Scanner getSc() {
+        return sc;
+    }
+
+    public static void setSc(Scanner sc) {
+        Sistema.sc = sc;
+    }
+    
+    
     
     public static void menuConductor(){
         System.out.println("/**********MENU CONDUCTOR**********/");
