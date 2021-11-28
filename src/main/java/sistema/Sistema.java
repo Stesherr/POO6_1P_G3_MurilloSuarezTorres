@@ -5,10 +5,12 @@
  */
 package sistema;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import usuario.Usuario;
 import usuario.Conductor;
 import usuario.Cliente;
+import manejoArchivos.manejoArchivos;
 /**
  *
  * @author Stefano
@@ -20,7 +22,7 @@ public class Sistema {
     private static Scanner sc = new Scanner(System.in);
     
     public static void menuCliente(){
-        System.out.println("/***************MENU***************/");
+        System.out.println("\n/***************MENU***************/");
         System.out.println("/*                                */");
         System.out.println("/**********************************/");
         System.out.println("1. Solicitar servicio de taxi");
@@ -30,7 +32,6 @@ public class Sistema {
         System.out.println("Elija una opcion:");
         int opcion = sc.nextInt();
         sc.nextLine();  
-        Scanner sca = new Scanner(System.in);
         switch(opcion){
             
             case 1:
@@ -48,10 +49,7 @@ public class Sistema {
             default:
                 System.out.println("Opcion invalida");
                 break;
-        }
-        
-        
-        
+        } 
     }
 
     public static ArrayList<Usuario> getUsuarios() {
@@ -77,19 +75,9 @@ public class Sistema {
     public static void setClientes(ArrayList<Cliente> clientes) {
         Sistema.clientes = clientes;
     }
-
-    public static Scanner getSc() {
-        return sc;
-    }
-
-    public static void setSc(Scanner sc) {
-        Sistema.sc = sc;
-    }
-    
-    
-    
+  
     public static void menuConductor(){
-        System.out.println("/**********MENU CONDUCTOR**********/");
+        System.out.println("\n/**********MENU CONDUCTOR**********/");
         System.out.println("/*                                */");
         System.out.println("/**********************************/");
         System.out.println("1. Consultar Serivicio Asignado");
@@ -105,8 +93,37 @@ public class Sistema {
         }
     }
     
-    public static boolean iniciarSesion(String usuario,String password){
-        return false;
+    public static void iniciarSesion(String usuario,String password){
+        ArrayList<String> usuariosArchivo = manejoArchivos.LeeFichero("usuarios.txt");
+        ArrayList<String> datosUsuario;
+        
+        for(int i=1; i<usuariosArchivo.size(); i++){
+            datosUsuario = new ArrayList(Arrays.asList(usuariosArchivo.get(i).split(",")));
+            String tipoUsuario = datosUsuario.get(6);
+            if(tipoUsuario.equals("C")){
+                Cliente cliente = new Cliente(datosUsuario.get(0),datosUsuario.get(1),datosUsuario.get(2)
+                        , datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,0);
+                usuarios.add(cliente);
+            }
+            else if(tipoUsuario.equals("R")){
+                Conductor conductor = new Conductor(datosUsuario.get(0), datosUsuario.get(1), 
+                        datosUsuario.get(2), datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,null,null);
+                usuarios.add(conductor);
+            } 
+        }
+        
+        System.out.println(usuarios);
+        
+        for(Usuario user:usuarios){
+            if(user.getUser().equals(usuario)&&user.getPass().equals(password)){
+                if(user instanceof Cliente){
+                    menuCliente();
+                }
+                else if(user instanceof Conductor){
+                    menuConductor();
+                }
+            }
+        }
     }
     
     public static void main(String[] args){
@@ -117,6 +134,8 @@ public class Sistema {
         String usuario = sc.nextLine();
         System.out.println("CONTRASEÑA: ");
         String password = sc.nextLine();
+        iniciarSesion(usuario,password);
+    
     }
     
     

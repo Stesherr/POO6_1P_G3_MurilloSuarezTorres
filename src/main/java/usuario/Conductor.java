@@ -14,10 +14,12 @@ import static usuario.EstadoConductor.OCUPADO;
 public class Conductor extends Usuario{
     private int numLicencia;
     private EstadoConductor estado;
-    private TipoVehiculo vehiculo;
+    private Vehiculo vehiculo;
     
-    public Conductor(String numCedula,String nombre,String user,String contraseña,String celular, int numLicencia, EstadoConductor estado,TipoVehiculo vehiculo){
-        super(numCedula, nombre, user, contraseña, celular);
+    public Conductor(String numCedula,String nombre,String apellido, 
+            String user,String pass,String celular, int numLicencia, 
+            EstadoConductor estado,Vehiculo vehiculo){
+        super(numCedula, nombre, apellido, user, pass, celular);
         this.estado = estado;
         this.numLicencia = numLicencia;
         this.vehiculo = vehiculo;
@@ -37,14 +39,6 @@ public class Conductor extends Usuario{
 
     public void setEstado(EstadoConductor estado) {
         this.estado = estado;
-    }
-
-    public TipoVehiculo getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(TipoVehiculo vehiculo) {
-        this.vehiculo = vehiculo;
     }
     
     public void consultarServicio(){

@@ -15,8 +15,8 @@ public class Cliente extends Usuario{
     
     
     
-    public Cliente (String numCedula,String nombre,String user,String contraseña,String celular, int edad, int numTarjCredit){
-        super(numCedula, nombre, user, contraseña, celular);
+    public Cliente (String numCedula,String nombre,String apellido,String user,String pass,String celular, int edad, int numTarjCredit){
+        super(numCedula, nombre, apellido,user, pass, celular);
         this.edad = edad;
         this.numTarjCredit = numTarjCredit;
     }
