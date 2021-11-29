@@ -5,6 +5,7 @@
  */
 package actividades;
 
+import java.util.Scanner;
 import usuario.Conductor;
 import usuario.Cliente;
 import usuario.TipoVehiculo;
@@ -42,6 +43,7 @@ public class Taxi extends Servicio{
         }
     }
     
+
     public void generarServicio(TipoServicio servicio, Cliente cliente){
         double total = this.CalcularPago();
         this.SepararConductor(this.getConductor().getVehiculo().getTipo());
@@ -50,7 +52,7 @@ public class Taxi extends Servicio{
                 + this.ruta.getPsalida() + "," + this.ruta.getPllegada() + "," + this.fecha + "," 
                 + this.hora + "," + this.numPersonas + "," + this.tp + "," + total;
         manejoArchivos.EscribirArchivo("viajes.txt", linea);
-        
+
     }
 
     public int getNumPersonas() {
