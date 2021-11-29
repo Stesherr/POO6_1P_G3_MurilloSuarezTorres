@@ -21,8 +21,8 @@ public class Delivery extends Servicio{
     private String datos;
     private Pedido pedido;
     
-    public Delivery(String fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,EstadoConductor ec,TipoServicio ts, Conductor conductor, String datos, Pedido pedido){
-        super(fecha,ruta,hora,tp,tv,ec,ts,conductor);
+    public Delivery(String fecha, Ruta ruta, String hora,TipoPago tp,TipoServicio ts, Conductor conductor, String datos, Pedido pedido){
+        super(fecha,ruta,hora,tp,ts,conductor);
         this.datos = datos;
         this.pedido = pedido;
     }

@@ -41,6 +41,10 @@ public class Conductor extends Usuario{
         this.estado = estado;
     }
     
+    public Vehiculo getVehiculo(){
+        return this.vehiculo;
+    }
+    
     @Override
     public void consultarServicio(){
         if (this.estado==OCUPADO) {

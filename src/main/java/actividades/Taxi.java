@@ -6,9 +6,11 @@
 package actividades;
 
 import usuario.Conductor;
+import usuario.Cliente;
 import usuario.TipoVehiculo;
 import usuario.EstadoConductor;
 import sistema.Sistema;
+import manejoArchivos.manejoArchivos;
 
 
 /**
@@ -18,35 +20,36 @@ import sistema.Sistema;
 public class Taxi extends Servicio{
     private int numPersonas;
     
-    public Taxi(String fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv, EstadoConductor ec,TipoServicio ts, Conductor conductor, int numPersonas){
-        super(fecha,ruta,hora,tp,tv,ec,ts,conductor);
+    public Taxi(String fecha, Ruta ruta, String hora,TipoPago tp,TipoServicio ts, Conductor conductor, int numPersonas){
+        super(fecha,ruta,hora,tp,ts,conductor);
         this.numPersonas = numPersonas;
     }
     
+    @Override
     public double CalcularPago(){
         return super.CalcularPago();
     }
     
     @Override
     public void SepararConductor(TipoVehiculo opcion){
-        
-        TipoVehiculo vehiculo= TipoVehiculo.AUTO;
         EstadoConductor estado= EstadoConductor.DISPONIBLE;
-        for (int i = 0; i < Sistema.getConductores().size(); i++) {
-            
-//            if ((Sistema.getConductores().get(i).getEstado()==estado)&&(Sistema.getConductores().get(i).getVehiculo()==vehiculo)){
-//                this.conductor = Sistema.getConductores().get(i);
-//                Sistema.getConductores().get(i).setEstado(EstadoConductor.OCUPADO);
-//                break;
-//            }
-            
+        for (Conductor cond:Sistema.getConductores()){
+            if(cond.getEstado().equals(estado) && cond.getVehiculo().getTipo().equals(opcion)){
+                this.setConductor(cond);
+                this.getConductor().setEstado(EstadoConductor.OCUPADO);
+                break;
+            }
         }
-        
     }
     
-    public void generarTaxi(){
-        this.CalcularPago();
-        this.SepararConductor(tv);
+    public void generarServicio(TipoServicio servicio, Cliente cliente){
+        double total = this.CalcularPago();
+        this.SepararConductor(this.getConductor().getVehiculo().getTipo());
+        String linea = this.id + "," + cliente.getNombre()+ " " + cliente.getApellido() + "," 
+                + this.conductor.getNombre() + " " + this.conductor.getApellido() + "," 
+                + this.ruta.getPsalida() + "," + this.ruta.getPllegada() + "," + this.fecha + "," 
+                + this.hora + "," + this.numPersonas + "," + this.tp + "," + total;
+        manejoArchivos.EscribirArchivo("viajes.txt", linea);
         
     }
 

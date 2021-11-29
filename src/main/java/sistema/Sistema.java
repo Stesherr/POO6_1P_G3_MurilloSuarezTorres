@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistema;
+import actividades.TipoPago;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,9 +13,13 @@ import java.util.Scanner;
 import usuario.Usuario;
 import usuario.Conductor;
 import usuario.Cliente;
-import manejoArchivos.manejoArchivos;
-import actividades.Servicio;
+import usuario.Vehiculo;
+import actividades.Ruta;
 import actividades.Taxi;
+import actividades.TipoServicio;
+import manejoArchivos.manejoArchivos;
+import usuario.EstadoConductor;
+import usuario.TipoVehiculo;
 
 /**
  *
@@ -26,7 +31,7 @@ public class Sistema {
     private static ArrayList<Cliente> clientes = new ArrayList();
     private static Scanner sc = new Scanner(System.in);
     
-    public static void menuCliente(){
+    public static void menuCliente(Cliente cl){
         int bucle = 0;
         do{
         System.out.println("\n/***************MENU***************/");
@@ -53,6 +58,7 @@ public class Sistema {
                 System.out.println("Ingrese el metodo de pago: \n- EFECTIVO"
                         + "\n- TARJETA");
                 String tipoPago = sc.nextLine();
+                TipoPago tipoPag = TipoPago.valueOf(tipoPago);
                 System.out.println("Ingrese el numero de personas que viajaran:");
                 int numPersonas = sc.nextInt();
                 sc.nextLine();
@@ -60,12 +66,13 @@ public class Sistema {
                 System.out.println("- Si\n - No");
                 String decision = sc.nextLine();
                 if(decision.equalsIgnoreCase("Si")){
-                    
+                    Taxi taxi = new Taxi(fechaFormat,new Ruta(pSalida,pLlegada)
+                            ,horaFormat,tipoPag,TipoServicio.TAXI,null,numPersonas);
+                    taxi.generarServicio(TipoServicio.TAXI, cl);
                     System.out.println("Se ha generado el servicio");
                 }else{
                     bucle = 0;
                 }
-                //Taxi taxi = new Taxi(fechaFormat,new Ruta(pSalida, pLlegada),horaFormat, tipoPago, );
                 break;
             case 2:
                 
@@ -114,6 +121,10 @@ public class Sistema {
     public static void iniciarSesion(String usuario,String password){
         ArrayList<String> usuariosArchivo = manejoArchivos.LeeFichero("usuarios.txt");
         ArrayList<String> datosUsuario;
+        ArrayList<String> vehiculosArchivo = manejoArchivos.LeeFichero("vehiculos.txt");
+        ArrayList<String> datosVehiculos;
+        ArrayList<String> conductoresArchivo = manejoArchivos.LeeFichero("conductores.txt");
+        ArrayList<String> datosConductores;
         
         for(int i=1; i<usuariosArchivo.size(); i++){
             datosUsuario = new ArrayList(Arrays.asList(usuariosArchivo.get(i).split(",")));
@@ -124,12 +135,23 @@ public class Sistema {
                 usuarios.add(cliente);
             }
             else if(tipoUsuario.equals("R")){
-                Conductor conductor = new Conductor(datosUsuario.get(0), datosUsuario.get(1), 
-                        datosUsuario.get(2), datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,null,null);
-                usuarios.add(conductor);
+                
+                for(int e=1; e<vehiculosArchivo.size(); e++){
+                        datosVehiculos = new ArrayList(Arrays.asList(vehiculosArchivo.get(e).split(",")));
+                        Vehiculo vehiculo = new Vehiculo(Integer.parseInt(datosVehiculos.get(0))
+                                ,datosVehiculos.get(1),datosVehiculos.get(2),datosVehiculos.get(3)
+                                ,TipoVehiculo.valueOf(datosVehiculos.get(4)));
+                        for(int j=1; j<conductoresArchivo.size(); j++){
+                            datosConductores = new ArrayList(Arrays.asList(conductoresArchivo.get(j).split(",")));
+                            Conductor conductor = new Conductor(datosUsuario.get(0), datosUsuario.get(1), 
+                                datosUsuario.get(2), datosUsuario.get(3), datosUsuario.get(4)
+                                    ,datosUsuario.get(5),Integer.parseInt(datosConductores.get(1))
+                                    ,EstadoConductor.valueOf(datosConductores.get(2)),vehiculo);
+                            usuarios.add(conductor);
+                        }
+                }
             } 
         }        
-        
         for(Usuario user:usuarios){
             if(user.getUser().equals(usuario)&&user.getPass().equals(password)){
                 if(user instanceof Cliente){
@@ -146,17 +168,16 @@ public class Sistema {
                         cl.setNumTarjCredit(numTarjeta);
                         System.out.println("Se han añadido sus datos correctamente");
                         manejoArchivos.EscribirArchivo("clientes.txt", cl.toString());
-                        menuCliente();
-                        
+                        menuCliente(cl);
                     }
                     else{
                         manejoArchivos.EscribirArchivo("clientes.txt", cl.toString());
-                        menuCliente();
+                        menuCliente(cl);
                     }                    
                 }
                 else if(user instanceof Conductor){
                     Conductor conduc = (Conductor)user;
-                    
+                    conductores.add(conduc);
                     menuConductor();
                 }
             }

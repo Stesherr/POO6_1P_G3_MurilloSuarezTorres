@@ -16,10 +16,11 @@ public class Vehiculo {
     private String marca;
     private TipoVehiculo tipo;
 
-    public Vehiculo(int codVehiculo, String placa, String modelo, TipoVehiculo tipo) {
+    public Vehiculo(int codVehiculo, String placa, String modelo, String marca, TipoVehiculo tipo) {
         this.codVehiculo = codVehiculo;
         this.placa = placa;
         this.modelo = modelo;
+        this.marca = marca;
         this.tipo = tipo;
     }
 
