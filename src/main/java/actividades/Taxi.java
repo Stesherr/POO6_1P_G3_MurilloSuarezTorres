@@ -5,11 +5,11 @@
  */
 package actividades;
 
-import java.util.Date;
 import usuario.Conductor;
 import usuario.TipoVehiculo;
 import usuario.EstadoConductor;
 import sistema.Sistema;
+
 
 /**
  *
@@ -18,8 +18,8 @@ import sistema.Sistema;
 public class Taxi extends Servicio{
     private int numPersonas;
     
-    public Taxi(int id, Date fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv, EstadoConductor ec,TipoServicio ts, Conductor conductor, int numPersonas){
-        super(id,fecha,ruta,hora,tp,tv,ec,ts,conductor);
+    public Taxi(String fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv, EstadoConductor ec,TipoServicio ts, Conductor conductor, int numPersonas){
+        super(fecha,ruta,hora,tp,tv,ec,ts,conductor);
         this.numPersonas = numPersonas;
     }
     

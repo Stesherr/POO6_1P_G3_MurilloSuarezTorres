@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package sistema;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 import usuario.Usuario;
 import usuario.Conductor;
 import usuario.Cliente;
 import manejoArchivos.manejoArchivos;
+import actividades.Servicio;
+import actividades.Taxi;
+
 /**
  *
  * @author Stefano
@@ -22,6 +27,8 @@ public class Sistema {
     private static Scanner sc = new Scanner(System.in);
     
     public static void menuCliente(){
+        int bucle = 0;
+        do{
         System.out.println("\n/***************MENU***************/");
         System.out.println("/*                                */");
         System.out.println("/**********************************/");
@@ -29,13 +36,36 @@ public class Sistema {
         System.out.println("2. Solicitar comida a domicilio");
         System.out.println("3. Solicitar entrega encomienda");
         System.out.println("4. Consultar servicio\n");
+        System.out.println("5. Salir\n");
         System.out.println("Elija una opcion:");
         int opcion = sc.nextInt();
         sc.nextLine();  
         switch(opcion){
-            
             case 1:
-                
+                System.out.println("Ingrese desde donde desea ir:");
+                String pSalida = sc.nextLine();
+                System.out.println("Ingrese hacia donde desea ir:");
+                String pLlegada = sc.nextLine();
+                SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFormat = fecha.format(new Date());
+                SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+                String horaFormat = hora.format(new Date());
+                System.out.println("Ingrese el metodo de pago: \n- EFECTIVO"
+                        + "\n- TARJETA");
+                String tipoPago = sc.nextLine();
+                System.out.println("Ingrese el numero de personas que viajaran:");
+                int numPersonas = sc.nextInt();
+                sc.nextLine();
+                System.out.println("¿Desea generar el servicio de viaje?");
+                System.out.println("- Si\n - No");
+                String decision = sc.nextLine();
+                if(decision.equalsIgnoreCase("Si")){
+                    
+                    System.out.println("Se ha generado el servicio");
+                }else{
+                    bucle = 0;
+                }
+                //Taxi taxi = new Taxi(fechaFormat,new Ruta(pSalida, pLlegada),horaFormat, tipoPago, );
                 break;
             case 2:
                 
@@ -46,18 +76,14 @@ public class Sistema {
             case 4:
                 
                 break;
+            case 5:
+                bucle = 1;
+                break;
             default:
                 System.out.println("Opcion invalida");
                 break;
         } 
-    }
-
-    public static ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public static void setUsuarios(ArrayList<Usuario> usuarios) {
-        Sistema.usuarios = usuarios;
+    }while(bucle == 0);     
     }
 
     public static ArrayList<Conductor> getConductores() {
@@ -66,14 +92,6 @@ public class Sistema {
 
     public static void setConductores(ArrayList<Conductor> conductores) {
         Sistema.conductores = conductores;
-    }
-
-    public static ArrayList<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public static void setClientes(ArrayList<Cliente> clientes) {
-        Sistema.clientes = clientes;
     }
   
     public static void menuConductor(){
@@ -110,14 +128,15 @@ public class Sistema {
                         datosUsuario.get(2), datosUsuario.get(3), datosUsuario.get(4),datosUsuario.get(5),0,null,null);
                 usuarios.add(conductor);
             } 
-        }
-        
+        }        
         
         for(Usuario user:usuarios){
             if(user.getUser().equals(usuario)&&user.getPass().equals(password)){
                 if(user instanceof Cliente){
                     Cliente cl = (Cliente)user;
                     if(cl.getEdad()==0 && cl.getNumTarjCredit() == null){
+                        System.out.println("\nBienvenid@ por primera vez " 
+                                + cl.getNombre() + " " + cl.getApellido() + "\n");
                         System.out.println("Ingrese su edad: ");
                         int edad = sc.nextInt();
                         sc.nextLine();
@@ -153,7 +172,7 @@ public class Sistema {
         System.out.println("CONTRASEÑA: ");
         String password = sc.nextLine();
         iniciarSesion(usuario,password);
-    
+        
     }
     
     

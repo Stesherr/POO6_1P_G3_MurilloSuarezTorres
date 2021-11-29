@@ -5,6 +5,7 @@
  */
 package actividades;
 import java.util.Date;
+import java.util.ArrayList;
 import usuario.Conductor;
 import usuario.TipoVehiculo;
 import usuario.EstadoConductor;
@@ -18,7 +19,7 @@ import java.util.Scanner;
  */
 public abstract class Servicio {
     protected int id;
-    protected Date fecha;
+    protected String fecha;
     protected Ruta ruta;
     protected String hora;
     protected Conductor conductor;
@@ -26,12 +27,14 @@ public abstract class Servicio {
     protected TipoVehiculo tv;
     protected EstadoConductor ec;
     protected TipoServicio ts;
+ 
     
-    public Servicio(int id, Date fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,EstadoConductor ec,TipoServicio ts, Conductor conductor){
+    public Servicio(String fecha, Ruta ruta, String hora,TipoPago tp,
+            TipoVehiculo tv,EstadoConductor ec,TipoServicio ts, Conductor conductor){
         this.conductor = conductor;
         this.fecha = fecha;
         this.hora = hora;
-        this.id = id;
+        this.id = (int)Math.random()*100+1;
         this.ruta = ruta;
         this.tp = tp;
         this.tv = tv;
@@ -86,11 +89,11 @@ public abstract class Servicio {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

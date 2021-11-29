@@ -11,17 +11,13 @@ package usuario;
  */
 public class Cliente extends Usuario{
     private int edad;
-    private String numTarjCredit;
-    
-    
+    private String numTarjCredit; 
     
     public Cliente (String numCedula,String nombre,String apellido,String user,String pass,String celular, int edad, String numTarjCredit){
         super(numCedula, nombre, apellido,user, pass, celular);
         this.edad = edad;
         this.numTarjCredit = numTarjCredit;
     }
-    
-    //solicitar servicio de taxi
 
     public int getEdad() {
         return edad;
@@ -42,6 +38,11 @@ public class Cliente extends Usuario{
     @Override
     public String toString(){
         return this.numCedula + "," + this.edad + "," + this.numTarjCredit;
+    }
+    
+    @Override
+    public void consultarServicio(){
+        
     }
     
 }

@@ -74,5 +74,7 @@ public abstract class Usuario {
         this.celular = celular;
     }
     
-
+    public void consultarServicio(){
+        
+    }
 }

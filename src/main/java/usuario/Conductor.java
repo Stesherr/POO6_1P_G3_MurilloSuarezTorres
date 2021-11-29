@@ -41,13 +41,13 @@ public class Conductor extends Usuario{
         this.estado = estado;
     }
     
+    @Override
     public void consultarServicio(){
         if (this.estado==OCUPADO) {
             System.out.println("Usted se encuentra prestando el servicio: ");
         } else {
             System.out.println("Usted no se encuentra prestando ningún servicio");
         }
-        
     }
     
     @Override

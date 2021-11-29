@@ -19,9 +19,9 @@ public class Encomienda extends Servicio{
     private TipoEncomienda tipoEncomienda;
     private int numProductos;
     
-    public Encomienda(int id, Date fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,TipoServicio ts, EstadoConductor ec, 
+    public Encomienda(String fecha, Ruta ruta, String hora,TipoPago tp,TipoVehiculo tv,TipoServicio ts, EstadoConductor ec, 
             Conductor conductor, TipoEncomienda e, int numProductos){
-        super(id,fecha,ruta,hora,tp,tv,ec,ts,conductor);
+        super(fecha,ruta,hora,tp,tv,ec,ts,conductor);
         this.numProductos = numProductos;
         this.tipoEncomienda = e;
     }
