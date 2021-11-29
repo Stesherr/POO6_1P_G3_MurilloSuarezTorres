@@ -8,6 +8,7 @@ import comida.Pedido;
 import comida.Plato;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 import sistema.Sistema;
 import usuario.Conductor;
 import usuario.TipoVehiculo;
@@ -31,8 +32,15 @@ public class Delivery extends Servicio{
         
     }
     
-    public static void generarDelivery(){
-        
+    public void generarDelivery(){
+        Scanner scann = new Scanner(System.in);
+        System.out.println("Desea confirmar el servicio de Delivery con un total a pagar de: "+this.CalcularPago(pedido)+" ? (Si/No)");
+        String answer = scann.nextLine().toLowerCase();
+        if (answer=="si"){
+            this.SepararConductor(tv);
+        }else{
+            //retorna al menu
+        }
     }
     
     public double CalcularPago(Pedido o){

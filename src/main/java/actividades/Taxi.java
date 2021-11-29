@@ -5,6 +5,7 @@
  */
 package actividades;
 
+import java.util.Scanner;
 import usuario.Conductor;
 import usuario.TipoVehiculo;
 import usuario.EstadoConductor;
@@ -45,10 +46,17 @@ public class Taxi extends Servicio{
     }
     
     public void generarTaxi(){
-        this.CalcularPago();
-        this.SepararConductor(tv);
         
+        Scanner scann = new Scanner(System.in);
+        System.out.println("Desea confirmar el servicio de Delivery con un total a pagar de: "+this.CalcularPago()+" ? (Si/No)");
+        String answer = scann.nextLine().toLowerCase();
+        if (answer=="si"){
+            this.SepararConductor(tv);
+        }else{
+            //retorna al menu
+        }
     }
+    
 
     public int getNumPersonas() {
         return numPersonas;
